@@ -460,6 +460,12 @@ public class RabbitTemplate extends RabbitAccessor implements RabbitOperations, 
 		return this.doSendAndReceive(exchange, routingKey, message);
 	}
 
+	public Message sendAndReceive(final String exchange, final String routingKey, final Message message, final MessagePostProcessor messagePostProcessor)
+			throws AmqpException {
+		Message messageToSend = messagePostProcessor.postProcessMessage(message);
+		return this.doSendAndReceive(exchange, routingKey, messageToSend);
+	}
+
 	public Object convertSendAndReceive(final Object message) throws AmqpException {
 		return this.convertSendAndReceive(this.exchange, this.routingKey, message, null);
 	}

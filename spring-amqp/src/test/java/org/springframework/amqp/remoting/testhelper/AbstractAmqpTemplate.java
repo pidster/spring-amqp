@@ -108,6 +108,11 @@ public abstract class AbstractAmqpTemplate implements AmqpTemplate {
 	}
 
 	@Override
+	public Message sendAndReceive(String exchange, String routingKey, Message message, MessagePostProcessor messagePostProcessor) throws AmqpException {
+		throw new NotImplementedException();
+	}
+
+	@Override
 	public Object convertSendAndReceive(Object message) throws AmqpException {
 		throw new NotImplementedException();
 	}

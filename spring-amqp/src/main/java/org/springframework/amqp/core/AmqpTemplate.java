@@ -196,6 +196,20 @@ public interface AmqpTemplate {
 	 */
 	Message sendAndReceive(String exchange, String routingKey, Message message) throws AmqpException;
 
+	/**
+	 * Basic RPC pattern. Send a message to a specific exchange with a specific routing key and attempt to receive a
+	 * response. Implementations will normally set the reply-to header to an exclusive queue and wait up for some time
+	 * limited by a timeout.
+	 *
+	 * @param exchange the name of the exchange
+	 * @param routingKey the routing key
+	 * @param message a message to send
+	 * @param messagePostProcessor a processor to apply to the message before it is sent
+	 * @return the response if there is one
+	 * @throws AmqpException if there is a problem
+	 */
+	Message sendAndReceive(String exchange, String routingKey, Message message, MessagePostProcessor messagePostProcessor) throws AmqpException;
+
 	// send and receive methods with conversion
 
 	/**
